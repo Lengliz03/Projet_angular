@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+
+// Import prebuilt theme (optional)
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Include core styles
+@include mat.core();
+
+// Define custom color palette
+$custom-palette: (
+  50: #fae1e5,
+  100: #f3b4bf,
+  200: #ec8294,
+  500: #d80529,
+  600: #d40424,
+  700: #ce041f,
+  contrast: (
+    50: rgba(black, 0.87),
+    500: white,
+  )
+);
+
+// Define your custom primary palette
+$custom-primary: mat.define-palette($custom-palette);
+
+// Define your custom accent and warn palettes
+$custom-accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400);
+$custom-warn: mat.define-palette(mat.$red-palette);
+
+// Define dark theme
+$ng-beginner-theme: mat.define-dark-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+    warn: $custom-warn,
+  )
+));
+
+// Apply the theme
+@include mat.core-theme($ng-beginner-theme);
+@include mat.all-component-themes($ng-beginner-theme);
